@@ -10,16 +10,15 @@ end
 
 # Detect files based on extension
 compressed_files = Dir.glob "*.{zip,rar,7z,tgz,gzip}"
-video_files = Dir.glob "*.{mp4,mkv,avi}"
-image_files = Dir.glob "*.{png,bmp,svg,jpeg,jpg}"
-
+videos = Dir.glob "*.{mp4,mkv,avi}"
+images = Dir.glob "*.{png,bmp,svg,jpeg,jpg,img}"
 
 
 # A function to move the files to our new directory
-def move_files(file_type)
+def move_files(files, file_type)
   
   # Get a string representation for our new directory
-  new_dir = Dir.pwd.to_s + "/" + file_type.to_s
+  new_dir = Dir.pwd.to_s + "/" + file_type
 
   # Create a new directory for our files
   unless Dir.exist?(new_dir)
@@ -27,13 +26,15 @@ def move_files(file_type)
   end
 
   # Move each file in our array to the new directory
-  FileUtils.mv(file_type, new_dir, secure: true)
+  FileUtils.mv(files, new_dir, secure: true)
 
 end
 
 
 
-move_files(compressed_files)
+move_files(compressed_files, "Compressed Files")
+move_files(videos, "Videos")
+move_files(images, "Images")
 
 
 # For Debugging
