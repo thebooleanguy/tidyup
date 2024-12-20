@@ -35,14 +35,14 @@ end
 
 
 
-move_files(compressed_files, "Compressed Files")
+move_files(compressed_files, "Compressed")
 move_files(videos, "Videos")
 move_files(images, "Images")
 move_files(documents, "Documents")
 move_files(programs, "Programs")
 
 # Move remaining files
-other_files = Dir.glob('*')
+other_files = Dir.glob("*").reject{ |f| f['Videos'] || f['Images'] || f['Compressed'] || f['Documents'] || f['Programs'] || f['Other']}
 move_files(other_files, "Other")
 
 
