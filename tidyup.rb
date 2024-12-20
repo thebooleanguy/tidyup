@@ -9,11 +9,12 @@ unless dir_name.empty?
 end
 
 # Detect files based on extension
-compressed_files = Dir.glob "*.{zip,rar,7z,tgz,gzip,img}"
+compressed_files = Dir.glob "*.{zip,rar,7z,tgz,gzip,img,bz2}"
 videos = Dir.glob "*.{mp4,mkv,avi}"
 images = Dir.glob "*.{png,bmp,svg,jpeg,jpg,psd,webp}"
-documents = Dir.glob "*.{pdf,docx,doc,txt,odt,rtf,csv,xlsx,pptx,html}"
-programs = Dir.glob "*.{py,exe,sh,bat,rb}"
+documents = Dir.glob "*.{pdf,docx,doc,txt,odt,rtf,csv,xlsx,pptx,html,epub}"
+programs = Dir.glob "*.{py,exe,sh,bat,rb,apk,deb,zst}"
+music = Dir.glob "*.{mp3,m4a,ogg,flac,wav}"
 
 
 
@@ -40,9 +41,10 @@ move_files(videos, "Videos")
 move_files(images, "Images")
 move_files(documents, "Documents")
 move_files(programs, "Programs")
+move_files(music, "Music")
 
 # Move remaining files
-other_files = Dir.glob("*").reject{ |f| f['Videos'] || f['Images'] || f['Compressed'] || f['Documents'] || f['Programs'] || f['Other']}
+other_files = Dir.glob("*").reject{ |f| f['Videos'] || f['Images'] || f['Compressed'] || f['Documents'] || f['Programs'] || f['Other'] || f['Music']}
 move_files(other_files, "Other")
 
 
