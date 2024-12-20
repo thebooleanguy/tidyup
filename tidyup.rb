@@ -9,9 +9,12 @@ unless dir_name.empty?
 end
 
 # Detect files based on extension
-compressed_files = Dir.glob "*.{zip,rar,7z,tgz,gzip}"
+compressed_files = Dir.glob "*.{zip,rar,7z,tgz,gzip,img}"
 videos = Dir.glob "*.{mp4,mkv,avi}"
-images = Dir.glob "*.{png,bmp,svg,jpeg,jpg,img}"
+images = Dir.glob "*.{png,bmp,svg,jpeg,jpg,psd,webp}"
+documents = Dir.glob "*.{pdf,docx,doc,txt,odt,rtf,csv,xlsx,pptx,html}"
+programs = Dir.glob "*.{py,exe,sh,bat,rb}"
+
 
 
 # A function to move the files to our new directory
@@ -35,6 +38,12 @@ end
 move_files(compressed_files, "Compressed Files")
 move_files(videos, "Videos")
 move_files(images, "Images")
+move_files(documents, "Documents")
+move_files(programs, "Programs")
+
+# Move remaining files
+other_files = Dir.glob('*')
+move_files(other_files, "Other")
 
 
 # For Debugging
