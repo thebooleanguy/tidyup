@@ -1,3 +1,6 @@
+# For debugging purposes
+/debug/
+
 *.gem
 *.rbc
 /.config
